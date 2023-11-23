@@ -13,7 +13,21 @@ const linksContainer = document.querySelector(".links-container");
 const links = document.querySelector(".links");
 
 navToggle.addEventListener("click", function () {
-  linksContainer.classList.toggle("show-links");
+  //   linksContainer.classList.toggle("show-links");
+  const containerHeight = linksContainer.getBoundingClientRect().height;
+  const linksHeight = links.getBoundingClientRect().height;
+
+  if (containerHeight == 0) {
+    // inline css -> take priority over external CSS file
+    // Must add
+    // .links-container {
+    //     height: auto !important;
+    // }
+    // in media query in external CSS file
+    linksContainer.style.height = `${linksHeight}px`;
+  } else {
+    linksContainer.style.height = 0;
+  }
 });
 
 // ********** fixed navbar ************
